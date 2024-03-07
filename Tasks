@@ -1,0 +1,61 @@
+Test #1 - Automation Test
+describe('Add Product to Cart on Harvey Norman', () => {
+  it('should add a Google Nest Cam to the shopping cart', () => {
+    cy.visit('https://www.harveynorman.com.au/google-nest-cam-outdoor-or-indoor-battery-1-pack.html');
+    cy.get('.product-info-stock .stock').should('contain', 'In Stock');
+    cy.get('ADD TO CART').click();
+    cy.visit('https://www.harveynorman.com.au/checkout/cart');
+    cy.get('.cart-item').should('contain', 'Google Nest Cam Outdoor & Indoor Battery 1-Pack');
+  });
+});
+
+
+
+Test #2 - Manual Test
+
+Test Cases for Login Functionality:
+1.	Verify Correct Login: Ensure that the users login with correct credentials.
+2.	Invalid Credentials: Verify that the system effectively blocks access by testing the login functionality using incorrect credentials.
+3.	Forgot Password: Test the "Forgot Your Password" feature for resetting passwords.
+4.	Invalid Email: Verify that the user enters correct email address while restting the password.
+5.	Required Fields: Ensure that the user enters both email address and password while logging in.
+6.	Logout Functionality: Make sure that users can log out and are sent to the correct page.
+
+
+Test Cases for Navigation and Product Selection:
+1.	Product Search: See if different product queries get valid results by testing the search functionality.
+2.	Product Filters: Test product filters (by product type, price, brand, current offers, etc.) and sort functions.
+3.	Product Details Page: Make sure the product details page includes all relevant information (pricing, specifications, returns, reviews, product care, etc.).
+4.	Compare: Make sure that the product can be added to compare list.
+5.	Wishlist: Make sure that the user can add the required product in the account’s wishlist and also, if the user is not logged in, the system tells the user to login.
+6.	Add to Cart: From the product details page, try adding products to the shopping cart.
+7.	Find in store: Check if the Norman product can be found in the store. This can be tested by entering suburb name or postcode.
+8.	Cart Update: The ability to change the quantity or remove products from the cart should be checked.
+
+
+Test Cases for Checkout and Payment Process:
+1.	Checkout Process Initiation: Ensure the continue button in the cart leads to the checkout process for logged-in users.
+2.	Select pick-up or delivery: Make sure the user can select the option for pick-up or delivery.
+3.	Calculate delivery fee: Make sure that the user enters delivery location to calculate the fee.
+4.	Billing Information: Validate and test the billing information entry process.
+5.	Shipping Address: Make sure that customers may input and choose a shipping address, and that the format is accurate.
+6.	Payment Method Selection: Ensure users can select the payment method to move forward.
+7.	Payment Authorization: Simulate scenarios for both successful and declined payments.
+8.	Order Confirmation Page: After payment, make sure you get an order confirmation page with all the details.
+9.	Email for Order Confirmation: Verify that an order confirmation email is sent by the system.
+10.	Empty Cart: Ensure the system prompts user to continue shopping if the cart is empty.
+
+
+Usability Test Cases:
+1.	Mobile Responsiveness: When testing on mobile devices, make sure the checkout and login procedures are easy to use.
+2.	Error Messaging: During the login and checkout procedures, make sure that the error messages are clear and useful.
+
+
+Test #3 - Sql Test
+
+SELECT mg.customer_first_name, mg.customer_last_name, mg.customer_email
+FROM magento_offer mg
+JOIN magento_rule mr ON mg.rule_id = mr.rule_id
+WHERE mg.offer_type = 'Staff' AND mr.created_in >= UNIX_TIMESTAMP(CURRENT_DATE - INTERVAL 7 DAY)
+ORDER BY mg.offer_id ASC LIMIT 10;
+
